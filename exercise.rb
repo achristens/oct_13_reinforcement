@@ -107,14 +107,30 @@ hash = {
 # pp hash
 
 # Add another key-value pair to each article where the key is "views" and the value is 0.
+
+
 article_type = hash[:response][:results].each do |type|
   if type[:type] = "article"
     type.merge!(:views => 0)
   end
 end
 
-pp article_type
 # Write a method called read_article that randomly selects an article and increases the articles "views" by one each time it's randomly selected.
+def read_article(content)
+  random = content.sample
+  random[:views] += 1
+  random
+end
 
+# puts read_article(article_type)
 
 # Write a method called display_views that iterates through the articles and displays their titles and view counts, like so:
+def display_views(content)
+  content.each do |k, v|
+    pp "Article name: #{k[:webTitle]}, Total views: #{k[:views]}"
+  end
+end
+read_article(article_type)
+read_article(article_type)
+read_article(article_type)
+display_views(article_type)
